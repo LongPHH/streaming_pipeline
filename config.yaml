@@ -1,0 +1,16 @@
+kafka:
+  bootstrap_servers: kafka:9092
+  topics:
+    input: user-login
+    processed: processed-logins
+    error: error-logins
+    analytics: login-analytics
+  consumer:
+    group_id: login-processor-group
+    auto_offset_reset: earliest
+
+metrics:
+  interval_seconds: 30
+
+logging:
+  level: INFO
