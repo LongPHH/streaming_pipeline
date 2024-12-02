@@ -11,8 +11,7 @@ A real-time streaming data pipeline using Kafka and Docker that processes login 
 
 1. Clone the repository:
 ```bash
-git clone <your-github-url>
-cd streaming_pipeline
+git clone git@github.com:LongPHH/streaming_pipeline.git
 ```
 
 2. Start the application:
@@ -84,4 +83,4 @@ docker-compose logs -f login-processor
 
 ## License
 
-[Your chosen license]
+This project is licensed under the MIT License
