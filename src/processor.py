@@ -32,6 +32,7 @@ class LoginProcessor:
         self.analytics = LoginAnalytics(self.config)
         self.validator = MessageValidator()
         self.transformer = MessageTransformer()
+        
 
     def process_message(self, message):
         """Process a single message through validation and transformation"""
