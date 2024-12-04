@@ -6,11 +6,11 @@ import logging
 class LoginAnalytics:
     '''
     This module processes login events and generates periodic metrics reports including:
-    - Message processing counts and error rates
-    - Device, location, and app version distributions
-    - Unique user counts and growth
+    Message processing counts and error rates
+    Device, location, and app version distributions
+    Unique user counts and growth
     '''
-    
+
     def __init__(self, config):
         self.config = config
         # Original metrics
@@ -48,7 +48,7 @@ class LoginAnalytics:
 
     def should_send_metrics(self):
         now = time.time()
-        if now - self.last_sent >= self.config['metrics']['interval_seconds']:
+        if now - self.last_sent >= self.config['analytics_interval']['metrics']:
             self.last_sent = now
             return True
         return False

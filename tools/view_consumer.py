@@ -49,7 +49,7 @@ def view_messages(selected_topics=None):
                     print(f"\n{topic}:", json.dumps(message.value, indent=2))
 
     except KeyboardInterrupt:
-        print("\nShutting down consumers...")
+        print("\nShutting down consumers viewer...")
         for consumer in consumers.values():
             consumer.close()
     except Exception as e:

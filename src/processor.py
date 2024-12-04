@@ -3,6 +3,8 @@ import logging
 import yaml
 from src.kafka_client import KafkaClient
 from src.analytics.metrics import LoginAnalytics
+from src.analytics.insights import LoginInsights
+from src.analytics.ip_patterns import IPPatternAnalyzer
 from src.validators.message_validator import MessageValidator
 from src.transformers.message_transformer import MessageTransformer
 
@@ -30,9 +32,11 @@ class LoginProcessor:
         # Initialize components
         self.kafka_client = KafkaClient(self.config)
         self.analytics = LoginAnalytics(self.config)
+        self.insights = LoginInsights(self.config)
+        self.ip_analyzer = IPPatternAnalyzer(self.config)  
         self.validator = MessageValidator()
         self.transformer = MessageTransformer()
-        
+
 
     def process_message(self, message):
         """Process a single message through validation and transformation"""
@@ -75,12 +79,29 @@ class LoginProcessor:
                 # Send to Kafka
                 self.kafka_client.send_message(topic, processed)
                 
-                # Update analytics
+                # Update login-analytics topic
                 self.analytics.update(processed)
                 if self.analytics.should_send_metrics():
                     self.kafka_client.send_message(
                         self.config['kafka']['topics']['analytics'], 
                         self.analytics.get_metrics()
+                    )
+                
+                # update login-insights topic
+                self.insights.update(processed)
+                # Send insights if interval reached
+                if self.insights.should_send_insights():
+                    self.kafka_client.send_message(
+                        self.config['kafka']['topics']['insights'],
+                        self.insights.get_insights()
+                    )
+
+                # Update IP pattern analysis
+                self.ip_analyzer.update(processed)
+                if self.ip_analyzer.should_send_insights():
+                    self.kafka_client.send_message(
+                        self.config['kafka']['topics']['ippatterns'],
+                        self.ip_analyzer.get_insights()
                     )
                     
         except KeyboardInterrupt:

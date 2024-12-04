@@ -5,12 +5,18 @@ kafka:
     processed: processed-logins
     error: error-logins
     analytics: login-analytics
+    insights: login-insights
+    ippatterns: login-ip-patterns
   consumer:
     group_id: login-processor-group
     auto_offset_reset: earliest
 
-metrics:
-  interval_seconds: 30
+# set how long between each message being produced (in seconds)
+analytics_interval:
+  metrics: 30
+  insights: 120
+  ippatterns: 300
+
 
 logging:
   level: INFO

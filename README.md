@@ -59,12 +59,8 @@ streaming_pipeline/
 └── requirements.txt                    # Python dependencies
 ```
 
-## Data Flow
-1. Login events are produced to the `user-login` topic
-2. Events are validated and transformed
-3. Valid events go to `processed-logins` topic
-4. Invalid events go to `error-logins` topic
-5. Analytics are published to `login-analytics` topic
+## Design Documentation
+For detailed design decisions and implementation notes, see [Design Documentation](DesignDoc.md)
 
 ## Troubleshooting
 
