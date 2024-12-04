@@ -39,26 +39,6 @@ python tools/view_consumer.py --topics login-analytics
 docker-compose down
 ```
 
-## Project Structure
-```
-streaming_pipeline/
-├── src/
-│   ├── analytics/
-│   │   └── metrics.py                  # Analytics and metrics collection
-│   ├── transformer/
-│   │   └── message_transformer.py      # Message transformation logic
-│   ├── validator/
-│   │   └── message_validator.py        # Message validation
-│   ├── kafka_client.py                 # Kafka interaction handling
-│   └── processor.py                    # Main processing logic
-├── tools/
-│   └── view_consumer.py                # Utility to view Kafka messages
-├── config.yaml                         # Configuration file
-├── docker-compose.yaml                 # Docker services configuration
-├── Dockerfile                          # Application container configuration
-└── requirements.txt                    # Python dependencies
-```
-
 ## Design Documentation
 For detailed design decisions and implementation notes, see [Design Documentation](DesignDoc.md)
 
