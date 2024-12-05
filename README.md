@@ -34,7 +34,7 @@ docker-compose exec kafka-consumer python -m tools.view_consumer --topics proces
 docker-compose exec kafka-consumer python -m tools.view_consumer --topics error-logins
 
 # View analytics topics
-docker-compose exec kafka-consumer python -m tools.view_consumer --topics <desired topics>
+docker-compose exec kafka-consumer python -m tools.view_consumer --topics <desired_topic>
 ```
 
 4. To stop the application:
