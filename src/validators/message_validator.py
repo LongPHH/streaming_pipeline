@@ -21,7 +21,7 @@ class MessageValidator:
     
     def __init__(self):
         self.logger = logging.getLogger(__name__)
-    def validate_message(self, message: Dict) -> Tuple[bool, List[Dict]]:
+    def validate_message(self, message):
         errors = []
         
         # Modified type checking to handle multiple allowed types
@@ -98,7 +98,7 @@ class MessageValidator:
 
         return len(errors) == 0, errors
 
-    def enrich_error_message(self, original_message: Dict, errors: List[Dict]) -> Dict:
+    def enrich_error_message(self, original_message, errors):
         return {
             'original_message': original_message,
             'errors': errors,

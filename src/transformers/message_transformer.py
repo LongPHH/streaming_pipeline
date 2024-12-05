@@ -15,15 +15,12 @@ class MessageTransformer:
         """Initialize transformer with logging setup"""
         self.logger = logging.getLogger(__name__)
 
-    def transform_timestamp(self, timestamp: str) -> str:
+    def transform_timestamp(self, timestamp):
         """
         Convert Unix timestamp to human-readable format
             
         Returns:
             str: Formatted datetime string (YYYY-MM-DD HH:MM:SS)
-            
-        Note:
-            Returns original timestamp if conversion fails
         """
         try:
             dt = datetime.fromtimestamp(int(timestamp))
@@ -32,7 +29,7 @@ class MessageTransformer:
             self.logger.error(f"Error transforming timestamp {timestamp}: {str(e)}")
             return timestamp
 
-    def get_device_category(self, device_type: str) -> str:
+    def get_device_category(self, device_type) :
         """
         Determine high-level device category
             
@@ -41,7 +38,7 @@ class MessageTransformer:
         """
         return 'mobile' if device_type in ['android', 'iOS'] else 'web'
 
-    def transform_message(self, message: Dict[str, Any]) -> Dict[str, Any]:
+    def transform_message(self, message):
         """
         Apply all transformations to incoming message
             
@@ -50,9 +47,6 @@ class MessageTransformer:
                 - Readable timestamps
                 - Device categorization
                 - All original fields preserved
-                
-        Raises:
-            Exception: If transformation fails
         """
         try:
             transformed = {
