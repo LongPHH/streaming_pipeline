@@ -1,5 +1,4 @@
 FROM python:3.9-slim
-
 WORKDIR /app
 
 # Install required system dependencies
@@ -12,13 +11,11 @@ RUN apt-get update && \
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the application code
+# Copy the application code and tools
 COPY src/ src/
+COPY tools/ tools/
 COPY config.yaml .
 
 # Create non-root user for security
 RUN useradd -m appuser && chown -R appuser /app
 USER appuser
-
-# Command to run the processor
-CMD ["python", "-m", "src.processor"]

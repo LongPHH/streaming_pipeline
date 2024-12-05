@@ -22,16 +22,19 @@ docker-compose up --build
 3. View the processed messages using the view_consumer tool:
 ```bash
 # List all topics
-python tools/view_consumer.py --list
+docker-compose exec kafka-consumer python -m tools.view_consumer --list
+
+# View raw login events
+docker-compose exec kafka-consumer python -m tools.view_consumer --topics user-login
 
 # View processed login events
-python tools/view_consumer.py --topics processed-logins
+docker-compose exec kafka-consumer python -m tools.view_consumer --topics processed-logins
 
 # View error messages
-python tools/view_consumer.py --topics error-logins
+docker-compose exec kafka-consumer python -m tools.view_consumer --topics error-logins
 
-# View analytics
-python tools/view_consumer.py --topics login-analytics
+# View analytics topics
+docker-compose exec kafka-consumer python -m tools.view_consumer --topics "any of the three analytics topics defined"
 ```
 
 4. To stop the application:

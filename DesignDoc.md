@@ -7,9 +7,9 @@ The pipeline processes login events in three main steps:
 3. **Output**: 
   - Valid messages go to 'processed-logins'
   - Error messages go to 'error-logins'
-  - Analytics on login patterns to 'login-analytics'
-  - User behavior insights to 'login-insights' 
-  - IP analysis to 'login-ip-patterns'
+  - Analytics on login patterns to 'login-analytics' which sends a message every 30 seconds
+  - User behavior insights to 'login-insights' which sends a message every 2 minutes
+  - IP analysis to 'login-ip-patterns'which sends a message every 5 minutes
 
 ### Why We Built It This Way
 - **Simple Processing**: Each message follows a clear path: validate → transform → output/analyze
